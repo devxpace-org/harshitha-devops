@@ -1,0 +1,109 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Creating a first EC2 Instance with CloudFormation
+
+Resources:
+  harshithaEC2Instance1:
+    Type: AWS::EC2::Instance
+    Properties:  
+      ImageId: "ami-0fd63e170918c491e"
+      InstanceType: t2.micro
+      KeyName: Harshitha
+
+  harshithaEC2Instance2:
+    Type: AWS::EC2::Instance
+    Properties: 
+      ImageId: "ami-0fd63e170918c491e"
+      InstanceType: t2.micro
+      KeyName: Harshitha
+ 
+  MyEBSVolume1:
+    Type: AWS::EC2::Volume
+    Properties: 
+      AvailabilityZone: "us-east-1b"
+      Size: 5
+
+  MyEBSVolume2:
+    Type: AWS::EC2::Volume
+    Properties: 
+      AvailabilityZone: "us-east-1b"
+      Size: 6    
+
+  MyVolumeAttachment1:
+    Type: AWS::EC2::VolumeAttachment
+    Properties:
+      Device: /dev/sdh
+      InstanceId: !Ref harshithaEC2Instance1
+      VolumeId: !Ref MyEBSVolume1  
+
+  MyVolumeAttachment2:
+    Type: AWS::EC2::VolumeAttachment
+    Properties:
+      Device: /dev/sdh
+      InstanceId: !Ref harshithaEC2Instance2
+      VolumeId: !Ref MyEBSVolume2   
+
+  MyS3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: harshitha-s3-bucket
+
+  harshithaIAMRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: harshitha-s3-access-policy
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - s3.amazonaws.com
+            Action:
+              - 'sts:AssumeRole'   
+
+  harshithaIAMPolicy:
+    Type: 'AWS::IAM::Policy'
+    Properties:
+      PolicyName: harshitha-iam-policy
+      Roles: 
+        - !Ref harshithaIAMRole
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Action: "*"
+            Resource: 
+             - !Sub arn:aws:s3:::${MyS3Bucket}
+             - !Sub arn:aws:s3:::${MyS3Bucket}/*
+
+  harshithaNLB: 
+    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
+    Properties:
+      Name: harshithaNLB
+      Scheme: internet-facing
+      Type: network
+      Subnets:
+        - subnet-09d0443c723bfce9b
+
+  harshithaTargetGroup:
+    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+    Properties:
+      Name: harshitha-TG
+      Port: 80
+      Protocol: TCP
+      Targets:
+        - Id: !Ref harshithaEC2Instance1
+          Port: 80
+        - Id: !Ref harshithaEC2Instance2
+          Port: 80
+      VpcId: vpc-0d8d445b8576c4c8d
+
+  harshithaListener:
+    Type: AWS::ElasticLoadBalancingV2::Listener
+    Properties:
+      LoadBalancerArn: !Ref harshithaNLB
+      Port: 80
+      Protocol: TCP   
+      DefaultActions: 
+        - Type: forward
+          TargetGroupArn: !Ref harshithaTargetGroup
