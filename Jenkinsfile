@@ -6,7 +6,7 @@
             steps {
 
                 
-                sh 'sudo docker build -t harshitha1503/harshi_docker2:image-1.0 .'
+                sh 'sudo docker build -t harshitha1503/newjob:1.0 .'
         }      
         }   
     }
