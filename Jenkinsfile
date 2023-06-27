@@ -8,10 +8,10 @@
     stages {
         stage('Build and Deploy') {
             steps {
-                sh 'docker build -t harshitha1503/nicejob:1.0 .'
+                sh 'docker build -t harshitha1503/hiworld:1.0 .'
                 sh 'echo $DOCKERHUBCREDS_PSW | docker login -u $DOCKERHUBCREDS_USR --password-stdin'
              
-                sh 'docker push harshitha1503/nicejob:1.0'
+                sh 'docker push harshitha1503/hiworld:1.0'
         }      
         }   
     }
