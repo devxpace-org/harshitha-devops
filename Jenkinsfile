@@ -1,17 +1,16 @@
- pipeline {
+pipeline {
     agent any
-    environment{
-        DOCKERHUBCREDS = credentials('docker')
-    }
-  
-
+   
     stages {
         stage('Build and Deploy') {
             steps {
-                sh 'docker build -t harshitha1503/hiworld:4.0 .'
-                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-                sh 'docker push harshitha1503/hiworld:4.0'
+
+                
+                sh 'sudo docker build -t harshitha1503/hiworld:1.0 .'
+		              sh 'sudo chmod 666 /var/run/docker.sock'
+                sh 'docker push harshitha1503/hiworld:1.0'
         }      
-        }   
+        }
+        
     }
 }
