@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Build and Deploy') {
             steps {
-                sh 'sudo docker pull harshitha1503/hiworld:4.0 .'  
+                sh 'sudo docker pull harshitha1503/hiworld:4.0'  
                 sh 'sudo docker run -d -p 4000:3000 harshitha1503/hiworld:4.0'
                
                            
