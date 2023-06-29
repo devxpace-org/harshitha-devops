@@ -2,7 +2,7 @@
 FROM node:20-alpine
 
 COPY package.json /app/harshitha-devops/ 
-COPY src /app/harshitha-devops/ 
+COPY src/ /app/harshitha-devops/ 
 
 WORKDIR /app/harshitha-devops/ 
 
