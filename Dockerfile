@@ -8,4 +8,4 @@ WORKDIR /app/harshitha-devops/
 
 # RUN apt-get update && apt-get install -y npm
 RUN npm install
-ENTRYPOINT ["node", "nicejob.js"]
+ENTRYPOINT ["node", "harshitha.js"]
