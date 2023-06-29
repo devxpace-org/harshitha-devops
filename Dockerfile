@@ -8,4 +8,4 @@ WORKDIR /app/harshitha/
 
 # RUN apt-get update && apt-get install -y npm
 RUN npm install
-ENTRYPOINT ["node", "chetana.js"]
+ENTRYPOINT ["node", "praneeth.js"]
