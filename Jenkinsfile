@@ -6,9 +6,9 @@ pipeline {
             steps {
 
                 
-                sh 'sudo docker build -t harshitha1503/harshitha:raja .'
+                sh 'sudo docker build -t harshitha1503/harshitha:sumanth .'
 		sh 'sudo chmod 666 /var/run/docker.sock'
-                sh 'sudo docker push harshitha1503/harshitha:raja'
+                sh 'sudo docker push harshitha1503/harshitha:sumanth'
         }      
         }
         
