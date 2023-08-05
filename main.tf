@@ -22,7 +22,6 @@ resource "aws_subnet" "Public-subnet1" {
   vpc_id            = "vpc-0f8e9732234994530"
   cidr_block        = "10.0.2.0/23"
   availability_zone = "us-east-2a"
-  map_public_ip_on_launch = “true” 
 tags = {
         Name = "Tf-Public-subnet1"
     }
