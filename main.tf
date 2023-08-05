@@ -19,7 +19,7 @@ tags = {
 }
 
 resource "aws_subnet" "Public-subnet1" {
-  vpc_id            = "vpc-0f8e9732234994530"
+  vpc_id            = aws_vpc.main.id
   cidr_block        = "10.0.1.0/24"
   availability_zone = "us-east-2a"
 tags = {
