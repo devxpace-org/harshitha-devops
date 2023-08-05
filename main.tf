@@ -17,3 +17,10 @@ tags = {
         Name = "Tf VPC"
     }
 }
+
+resource "aws_subnet" "main" {
+  vpc_id            = "vpc-0f8e9732234994530"
+  cidr_block        = 10.0.0.0/23
+  availability_zone = "us-east-2a"
+}
+
