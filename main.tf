@@ -18,7 +18,7 @@ tags = {
     }
 }
 
-resource "aws_subnet" "main" {
+resource "aws_subnet" "subnet1" {
   vpc_id            = "vpc-0f8e9732234994530"
   cidr_block        = "10.0.0.0/23"
   availability_zone = "us-east-2a"
