@@ -67,7 +67,7 @@ resource "aws_route_table" "Public-subnet1" {
 
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.main.id
+    gateway_id = aws_internet_gateway.example.id
   }
 
   tags = {
