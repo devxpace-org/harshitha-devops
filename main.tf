@@ -1,16 +1,5 @@
 provider "aws" {
   region     = "us-east-2"
-  access_key = "AKIAZI6VE4OTVM5RFMJV"
-  secret_key = "VI3Rrt+sDzP4H3FSMFBPMl27sZgEfq/FSZCgbSLF"
-}
-
-resource "aws_instance" "example" {
-  ami           = "ami-0dfb37bc0250c1b75"
-  instance_type = "t2.micro"
-    
-tags = {
-        Name = "Tf instance"
-    }
 }
 
 resource "aws_vpc" "main" {
