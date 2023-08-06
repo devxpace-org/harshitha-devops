@@ -54,7 +54,15 @@ tags = {
     }
 }
 
-resource "aws_route_table" "public-subnet1" {
+# Create the Internet Gateway
+resource "aws_internet_gateway" "example" {
+  vpc_id = aws_vpc.main.id
+
+tags = {
+    Name = "InternetGateway"
+  }
+
+resource "aws_route_table" "Public-subnet1" {
   vpc_id = aws_vpc.main.id
 
   route {
@@ -68,9 +76,12 @@ resource "aws_route_table" "public-subnet1" {
 }
 
 resource "aws_route_table_association" "public" {
-  subnet_id      = aws_subnet.public.id
-  route_table_id = aws_route_table.public.id
+  subnet_id      = aws_subnet.Public-subnet1.id
+  route_table_id = aws_route_table.Public-subnet1.id
 }
+
+
+
 
 
 
