@@ -54,13 +54,13 @@ tags = {
     }
 }
 
-# Create the Internet Gateway
 resource "aws_internet_gateway" "example" {
   vpc_id = aws_vpc.main.id
 
 tags = {
     Name = "InternetGateway"
   }
+}
 
 resource "aws_route_table" "Public-subnet1" {
   vpc_id = aws_vpc.main.id
